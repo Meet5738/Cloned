@@ -2,9 +2,7 @@
 from typing import List
 
 def reverse_by_n_elements(lst: List[int], n: int) -> List[int]:
-    """
-    Reverses the input list by groups of n elements. 
-    """
+    
     result = []
     for i in range(0, len(lst), n):
         group = lst[i:i+n]
@@ -44,9 +42,7 @@ print(group_by_length(["one", "two", "three", "four"]))
 from typing import Any, Dict
 
 def flatten_dict(nested_dict: Dict[str, Any], parent_key: str = '', sep: str = '.') -> Dict[str, Any]:
-    """
-    Flattens a nested dictionary into a single-level dictionary with dot notation for keys.
-    """
+    
     flattened = {}
     
     for key, value in nested_dict.items():
@@ -79,7 +75,6 @@ nested_dictionary = {
     }
 }
 
-# Flatten the nested dictionary
 flattened_dict = flatten_dict(nested_dictionary)
 print(flattened_dict)
 
@@ -88,7 +83,6 @@ from typing import List
 
 def unique_permutations(nums: List[int]) -> List[List[int]]:
     def backtrack(start: int):
-        # If we have a complete permutation, add a copy of it to the result
         if start == len(nums):
             result.append(nums[:])
             return
@@ -109,7 +103,7 @@ def unique_permutations(nums: List[int]) -> List[List[int]]:
     backtrack(0)
     return result
 
-# Example usage:
+# Example
 nums = [1, 1, 2]
 unique_perms = unique_permutations(nums)
 print(unique_perms)
@@ -126,7 +120,6 @@ def find_all_dates(text: str) -> List[str]:
         r'\b\d{4}\.\d{2}\.\d{2}\b'  # yyyy.mm.dd format
     ]
     
-    # Compile the patterns and find all matches in the text
     all_dates = []
     for pattern in date_patterns:
         matches = re.findall(pattern, text)
@@ -134,7 +127,7 @@ def find_all_dates(text: str) -> List[str]:
     
     return all_dates
 
-# Example usage:
+# Example 
 text = "I was born on 23-08-1994, my friend on 08/23/1994, and another one on 1994.08.23."
 dates = find_all_dates(text)
 print(dates)
@@ -145,10 +138,8 @@ import pandas as pd
 from math import radians, sin, cos, sqrt, atan2
 
 def haversine(lat1, lon1, lat2, lon2):
-    """
-    Calculate the Haversine distance between two latitude-longitude points.
-    """
-    R = 6371000  # Radius of Earth in meters
+   
+    R = 6371000  
     phi1, phi2 = radians(lat1), radians(lat2)
     delta_phi = radians(lat2 - lat1)
     delta_lambda = radians(lon2 - lon1)
@@ -159,19 +150,13 @@ def haversine(lat1, lon1, lat2, lon2):
     return R * c
 
 def polyline_to_dataframe(polyline_str: str) -> pd.DataFrame:
-    """
-    Converts a polyline string into a DataFrame with latitude, longitude, and distance between consecutive points.
-    """
-    # Decode the polyline string into a list of (latitude, longitude) tuples
+    
     coordinates = polyline.decode(polyline_str)
 
-    # Create a DataFrame from the list of coordinates
     df = pd.DataFrame(coordinates, columns=['latitude', 'longitude'])
 
-    # Initialize the distance column with zeros
     df['distance'] = 0.0
 
-    # Calculate the distance for each row starting from the second point
     for i in range(1, len(df)):
         lat1, lon1 = df.loc[i-1, ['latitude', 'longitude']]
         lat2, lon2 = df.loc[i, ['latitude', 'longitude']]
@@ -179,7 +164,7 @@ def polyline_to_dataframe(polyline_str: str) -> pd.DataFrame:
 
     return df
 
-# Example usage:
+# Example 
 polyline_str = 'u{~vFvyys@f}@~q@dAbP'
 df = polyline_to_dataframe(polyline_str)
 print(df)
@@ -193,7 +178,7 @@ def rotate_and_transform_matrix(matrix: List[List[int]]) -> List[List[int]]:
     # Rotate the matrix by 90 degrees clockwise
     rotated_matrix = [[matrix[n - j - 1][i] for j in range(n)] for i in range(n)]
     
-    # Replace each element with the sum of all elements in the same row and column, excluding itself
+    # Replace each element with the sum of all elements in the same row and column
     final_matrix = [[0] * n for _ in range(n)]
     
     for i in range(n):
@@ -204,7 +189,7 @@ def rotate_and_transform_matrix(matrix: List[List[int]]) -> List[List[int]]:
     
     return final_matrix
 
-# Example usage:
+# Example 
 matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 final_matrix = rotate_and_transform_matrix(matrix)
 
