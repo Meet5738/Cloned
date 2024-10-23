@@ -30,3 +30,12 @@ def calculate_distance_matrix(df: pd.DataFrame) -> pd.DataFrame:
                 distance_matrix.at[i, j] = min(distance_matrix.at[i, j], distance_matrix.at[i, k] + distance_matrix.at[k, j])
     
     return distance_matrix
+
+# Example usage:
+# Assuming dataset-2.csv is loaded into a DataFrame called df
+df = pd.read_csv('dataset-2.csv')
+
+# Example call to the function
+distance_matrix = calculate_distance_matrix(df)
+print(distance_matrix)
+    
